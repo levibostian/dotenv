@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"fmt"
+
 	cliConfig "github.com/levibostian/dotenv/cliconfig"
 	"github.com/levibostian/dotenv/ui"
 	"github.com/spf13/cobra"
@@ -9,6 +11,7 @@ import (
 var cfgFile string
 var debug bool
 var verbose bool
+var versionNumber string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -21,9 +24,19 @@ var rootCmd = &cobra.Command{
 	// },
 }
 
+var versionCmd = &cobra.Command{
+	Use:   "version",
+	Short: "Print the version number of dotenv program",
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println(versionNumber)
+	},
+}
+
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
-func Execute() {
+func Execute(version string) {
+	versionNumber = version
+
 	if err := rootCmd.Execute(); err != nil {
 		ui.HandleError(err)
 	}
@@ -34,6 +47,8 @@ func init() {
 
 	rootCmd.PersistentFlags().BoolVar(&debug, "debug", false, "Show debug statements. Used for debugging program for bug reports and development. (default false)")
 	rootCmd.PersistentFlags().BoolVar(&verbose, "verbose", false, "Show verbose logging. (default false)")
+
+	rootCmd.AddCommand(versionCmd)
 }
 
 // initConfig reads in config file and ENV variables if set.
