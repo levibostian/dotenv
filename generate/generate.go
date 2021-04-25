@@ -2,19 +2,73 @@ package generate
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
+	"strings"
 
+	mapset "github.com/deckarep/golang-set"
+	"github.com/joho/godotenv"
+	"github.com/levibostian/dotenv/lang"
+	"github.com/levibostian/dotenv/types"
 	"github.com/levibostian/dotenv/ui"
 	"github.com/levibostian/dotenv/util"
 )
 
-func Execute(lang string, outputPath string) {
-	ui.Debug(lang)
-	ui.Debug(`Output path %s`, outputPath)
+func Execute(options types.GenerateOptions) {
+	ui.Debug(`Generating. Options: %+v`, options)
 
-	util.WriteToFile(outputPath+`Env.kt`, fmt.Sprintf(kotlinFileTemplate, "com.foo.bar", "val bar: String = \"\""))
-	// TODO iterate source code files that match a file pattern (example: <given-input-path>/**/*.kt)
-	// TODO using regex, find Env values
-	// TODO output to file.
+	var err error
+	inputLang, err := lang.GetLang(options.InputLang)
+	ui.HandleError(err)
+	outputLang, err := lang.GetLang(options.OutputLang)
 
-	return
+	envValuesFound := mapset.NewSet()
+
+	filepath.Walk(options.SourceCodePath, func(path string, info os.FileInfo, err error) error {
+		fileContents := util.GetFileContents(path)
+		if fileContents == nil {
+			return nil
+		}
+
+		if !inputLang.IsFilenameValid(info.Name()) {
+			ui.Debug(`File not valid, skipping: %s`, path)
+			return nil
+		}
+
+		ui.Debug(`Checking file: %s`, path)
+
+		for _, line := range strings.Split(*fileContents, "\n") {
+			ui.Debug("Line of file: %s", line)
+
+			for _, envFound := range inputLang.ParseSourceCodeLine(line) {
+				envValuesFound.Add(envFound)
+			}
+		}
+
+		return nil
+	})
+
+	ui.Debug("Set values: %s", envValuesFound.String())
+
+	err = godotenv.Load(options.DotenvPath + ".env")
+	ui.HandleError(err)
+
+	var envValues = make(map[string]string)
+	envValuesFound.Each(func(elem interface{}) bool {
+		envSourceCodeValue := elem.(string)
+
+		value := os.Getenv(strings.ToUpper(envSourceCodeValue))
+
+		if value != "" {
+			envValues[envSourceCodeValue] = value
+		}
+
+		return false
+	})
+
+	ui.Debug("Mapped values: %s", envValues)
+
+	outputFile := options.OutputPath + outputLang.GetOutputFileName()
+	util.WriteToFile(outputFile, outputLang.GetOutputFile(envValues, options))
+	ui.Verbose(fmt.Sprintf("Wrote file to: %s", outputFile))
 }

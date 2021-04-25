@@ -8,6 +8,7 @@ import (
 
 var cfgFile string
 var debug bool
+var verbose bool
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -32,9 +33,10 @@ func init() {
 	cobra.OnInitialize(initConfig)
 
 	rootCmd.PersistentFlags().BoolVar(&debug, "debug", false, "Show debug statements. Used for debugging program for bug reports and development. (default false)")
+	rootCmd.PersistentFlags().BoolVar(&verbose, "verbose", false, "Show verbose logging. (default false)")
 }
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
-	cliConfig.SetCliConfig(debug)
+	cliConfig.SetCliConfig(debug, verbose)
 }

@@ -11,7 +11,7 @@ import (
 func ShouldNotHappen(err error) {
 	color.Red("[BUG] Something happened that should not have. That means there is probably a bug inside of dotenv.")
 	color.Red("Report an issue here: https://github.com/levibostian/dotenv/issues/new, and give this message:")
-	fmt.Print(err)
+	fmt.Println(err)
 	panic("Exiting...")
 }
 
@@ -25,10 +25,19 @@ func HandleError(err error) {
 }
 
 // Debug - Allows you to put anything you want inside. String, struct, etc. We will print that to the console.
+// Help: https://gobyexample.com/string-formatting
 func Debug(format string, args ...interface{}) {
 	if cliConfig.CliConfig.Debug {
 		msg := fmt.Sprintf(format, args...)
 		color.Cyan("[DEBUG] " + msg)
+	}
+}
+
+// Verbose - Allows you to put anything you want inside. String, struct, etc. We will print that to the console.
+func Verbose(format string, args ...interface{}) {
+	if cliConfig.CliConfig.Verbose || cliConfig.CliConfig.Debug {
+		msg := fmt.Sprintf(format, args...)
+		color.White(msg)
 	}
 }
 
@@ -40,10 +49,4 @@ func Abort(message string) {
 // Error show a message in red
 func Error(message string) {
 	color.Red(message)
-}
-
-// Message Show a neutral message in white
-func Message(format string, args ...interface{}) {
-	msg := fmt.Sprintf(format, args...)
-	color.White(msg)
 }

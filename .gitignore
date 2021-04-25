@@ -1,6 +1,8 @@
 secrets.tar
 secrets
 snap.login
+# the built CLI. ignore it. 
+dotenv
 
 dist/
 node_modules/

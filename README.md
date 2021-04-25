@@ -9,5 +9,5 @@ go build
 ```
 
 ```
-./dotenv --debug generate kotlin -p com.foo.bar
+./dotenv --debug generate java -p com.foo.bar
 ```

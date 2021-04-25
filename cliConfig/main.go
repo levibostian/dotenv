@@ -1,11 +1,12 @@
 package cliconfig
 
 type cliConfig struct {
-	Debug bool
+	Debug   bool
+	Verbose bool
 }
 
-var CliConfig = cliConfig{false}
+var CliConfig = cliConfig{false, false}
 
-func SetCliConfig(debug bool) {
-	CliConfig = cliConfig{debug}
+func SetCliConfig(debug bool, verbose bool) {
+	CliConfig = cliConfig{debug, verbose}
 }
