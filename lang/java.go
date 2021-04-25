@@ -58,19 +58,22 @@ func (lang Java) GetOutputFileName() string {
 func (lang Java) GetOutputFile(values map[string]string, options types.GenerateOptions) string {
 	var variableLines = []string{}
 
-	// sort the variables for more predictable tests and make the file easier to read by dev
+	// sort the variable names for more predictable tests and make the file easier to read by dev
 	keys := make([]string, 0, len(values))
 	for k := range values {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)
 
+	// looping through all environment variables we need to output and generating lines of code for them.
 	for _, key := range keys {
 		value := values[key]
 		variable := key
 
+		// Just making a string variable definition. In Java, you define variables with `public static String <variable-name> = "string value";`
 		variableLines = append(variableLines, fmt.Sprintf("public static String %s = \"%s\";", strcase.ToLowerCamel(strings.ToLower(variable)), value))
 	}
 
+	// Taking template for language and adding variables to it.
 	return fmt.Sprintf(javaFileTemplate, options.PackageName, strings.Join(variableLines, "\n    "))
 }
