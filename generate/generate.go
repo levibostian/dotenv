@@ -26,7 +26,7 @@ func Execute(options types.GenerateOptions) {
 
 	filepath.Walk(options.SourceCodePath, func(path string, info os.FileInfo, err error) error {
 		fileContents := util.GetFileContents(path)
-		if fileContents == nil {
+		if fileContents == "" {
 			return nil
 		}
 
@@ -37,7 +37,7 @@ func Execute(options types.GenerateOptions) {
 
 		ui.Debug(`Checking file: %s`, path)
 
-		for _, line := range strings.Split(*fileContents, "\n") {
+		for _, line := range strings.Split(fileContents, "\n") {
 			ui.Debug("Line of file: %s", line)
 
 			for _, envFound := range inputLang.ParseSourceCodeLine(line) {

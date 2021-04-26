@@ -11,20 +11,20 @@ import (
 	"github.com/levibostian/dotenv/ui"
 )
 
-func GetFileContents(path string) *string {
+func GetFileContents(path string) string {
 	info, err := os.Stat(path)
 	if os.IsNotExist(err) {
-		return nil
+		return ""
 	}
 	if info.IsDir() {
-		return nil
+		return ""
 	}
 	content, err := ioutil.ReadFile(path)
 	ui.HandleError(err)
 
 	fileContentString := string(content)
 
-	return &fileContentString
+	return fileContentString
 }
 
 func WriteToFile(filename string, data string) error {

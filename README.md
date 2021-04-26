@@ -46,6 +46,8 @@ This is where the Go source code exists for the new language.
 
 3. Go into `./lang/langs.go` and follow the instructions in that file. It will tell you a couple of things that you need to do in that file to add your new lang to the CLI. 
 
+4. Make a e2e test in directory `./e2e/`. See the examples already there. Think of a use case like generating Typescript from Typescript source and make a e2e test for that scenario. 
+
 # Deployment 
 
 * Make sure to set version number when compiling: `go build -ldflags "-X main.version=1.0.1"`
