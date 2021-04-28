@@ -1,3 +1,4 @@
+project_name: dotenv
 before:
   hooks:
     - go mod download
@@ -5,7 +6,7 @@ builds:
   - env:
       - CGO_ENABLED=0
     main: ./main.go
-    binary: purslane
+    binary: dotenv
     goos:
     - windows
     - darwin
@@ -26,34 +27,35 @@ snapshot:
   name_template: "{{ .Tag }}-next"
 
 dockers:
-  - image_templates:
-    - "levibostian/purslane:latest"
-    - "levibostian/purslane:{{ .Tag }}"
+- image_templates:
+  - "levibostian/dotenv:latest"
+  - "levibostian/dotenv:{{ .Tag }}"
   
 brews:
-  - name: purslane
-    github:
-      owner: levibostian
-      name: homebrew-tap
-    folder: Formula
-    homepage: "https://github.com/levibostian/purslane"
+- name: dotenv
+  tap:
+    owner: levibostian
+    name: homebrew-tap
+  folder: Formula
+  license: "MIT"
+  homepage: "https://github.com/levibostian/dotenv"
 
-snapcrafts:
-  - name: purslane
-    publish: true
-    summary: Scalable, flexible, affordable, and safe way to perform periodic tasks.
-    description: Run a single docker container inside of a cloud server as if it was a CLI.
-    grade: stable
-    confinement: strict
-    license: MIT
-    apps:
-      purslane:
-        plugs: ["home", "network", "config-file"]
-    plugs:
-      config-file:
-        interface: personal-files
-        read:      
-        - $HOME/.purslane
+# snapcrafts:
+#   - name: purslane
+#     publish: true
+#     summary: Scalable, flexible, affordable, and safe way to perform periodic tasks.
+#     description: Run a single docker container inside of a cloud server as if it was a CLI.
+#     grade: stable
+#     confinement: strict
+#     license: MIT
+#     apps:
+#       purslane:
+#         plugs: ["home", "network", "config-file"]
+#     plugs:
+#       config-file:
+#         interface: personal-files
+#         read:      
+#         - $HOME/.purslane
 
 # skip changelog generation because semantic release does that for us already. Go releaser updates existing github releases if there is one.
 changelog:

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+	<testsuite tests="0" failures="0" time="0.000000" name="github.com/levibostian/dotenv">
+		<properties>
+			<property name="go.version" value="go1.15.7 darwin/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.000000" name="github.com/levibostian/dotenv/cliconfig">
+		<properties>
+			<property name="go.version" value="go1.15.7 darwin/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.000000" name="github.com/levibostian/dotenv/cmd">
+		<properties>
+			<property name="go.version" value="go1.15.7 darwin/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="1" failures="0" time="0.170000" name="github.com/levibostian/dotenv/e2e">
+		<properties>
+			<property name="go.version" value="go1.15.7 darwin/amd64"></property>
+		</properties>
+		<testcase classname="github.com/levibostian/dotenv/e2e" name="Test_Version_expectValidValue" time="0.170000"></testcase>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.000000" name="github.com/levibostian/dotenv/e2e/helpers">
+		<properties>
+			<property name="go.version" value="go1.15.7 darwin/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="1" failures="0" time="0.040000" name="github.com/levibostian/dotenv/e2e/kotlin_to_java">
+		<properties>
+			<property name="go.version" value="go1.15.7 darwin/amd64"></property>
+		</properties>
+		<testcase classname="github.com/levibostian/dotenv/e2e/kotlin_to_java" name="Test_GenerateJavaFromKotlinSource_expectFileGenerated" time="0.040000"></testcase>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.000000" name="github.com/levibostian/dotenv/generate">
+		<properties>
+			<property name="go.version" value="go1.15.7 darwin/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="20" failures="0" time="0.000000" name="github.com/levibostian/dotenv/lang">
+		<properties>
+			<property name="go.version" value="go1.15.7 darwin/amd64"></property>
+		</properties>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Java_IsFilenameValid_givenFileNoExtension_expectFalse" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Java_IsFilenameValid_givenFileNotJavaExtension_expectFalse" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Java_IsFilenameValid_givenFileJavaExtension_expectTrue" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Java_IsFilenameValid_givenEndsWithJava_expectFalse" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Java_ParseSourceCodeLine_givenLineWithNoVariables_expectEmptyList" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Java_ParseSourceCodeLine_givenLineWithSingleWordVariable_expectGetVariable" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Java_ParseSourceCodeLine_givenLineWithDuplicateVariables_expectGetBothVariable" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Java_ParseSourceCodeLine_givenLineWithMultiWordVariable_expectGetSnakeCase" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Java_GetOutputFile_givenNoValues_expectEmptyClassString" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Java_GetOutputFile_givenValues_expectClassString" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Kotlin_IsFilenameValid_givenFileNoExtension_expectFalse" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Kotlin_IsFilenameValid_givenFileNotKotlinExtension_expectFalse" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Kotlin_IsFilenameValid_givenFileKotlinExtension_expectTrue" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Kotlin_IsFilenameValid_givenEndsWithKotlin_expectFalse" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Kotlin_ParseSourceCodeLine_givenLineWithNoVariables_expectEmptyList" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Kotlin_ParseSourceCodeLine_givenLineWithSingleWordVariable_expectGetVariable" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Kotlin_ParseSourceCodeLine_givenLineWithDuplicateVariables_expectGetBothVariable" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Kotlin_ParseSourceCodeLine_givenLineWithMultiWordVariable_expectGetSnakeCase" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Kotlin_GetOutputFile_givenNoValues_expectEmptyClassString" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/lang" name="Test_Kotlin_GetOutputFile_givenValues_expectClassString" time="0.000000"></testcase>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.000000" name="github.com/levibostian/dotenv/types">
+		<properties>
+			<property name="go.version" value="go1.15.7 darwin/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="0" failures="0" time="0.000000" name="github.com/levibostian/dotenv/ui">
+		<properties>
+			<property name="go.version" value="go1.15.7 darwin/amd64"></property>
+		</properties>
+	</testsuite>
+	<testsuite tests="6" failures="0" time="0.000000" name="github.com/levibostian/dotenv/util">
+		<properties>
+			<property name="go.version" value="go1.15.7 darwin/amd64"></property>
+		</properties>
+		<testcase classname="github.com/levibostian/dotenv/util" name="Test_SanitizeDirectory_givenEmptyString_expectCurrentDirectory" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/util" name="Test_SanitizeDirectory_givenDot_expectCurrentDirectory" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/util" name="Test_SanitizeDirectory_givenDirectoryWithoutDash_expectDirectoryWithDash" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/util" name="Test_SanitizeDirectory_givenDirectoryWithDash_expectSameResult" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/util" name="Test_SanitizeDirectory_givenDirectoryThatDoesntExist_expectError" time="0.000000"></testcase>
+		<testcase classname="github.com/levibostian/dotenv/util" name="Test_SanitizeDirectory_givenFile_expectError" time="0.000000"></testcase>
+	</testsuite>
+</testsuites>
