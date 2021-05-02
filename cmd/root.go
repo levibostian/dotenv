@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	cliConfig "github.com/levibostian/dotenv/cliconfig"
+	"github.com/levibostian/dotenv/config"
 	"github.com/levibostian/dotenv/ui"
 	"github.com/spf13/cobra"
 )
@@ -53,5 +53,5 @@ func init() {
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
-	cliConfig.SetCliConfig(debug, verbose)
+	config.SetCliConfig(debug, verbose)
 }

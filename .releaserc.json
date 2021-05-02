@@ -1,5 +1,10 @@
 {
     "tagFormat": "${version}",
+    "branches": [
+        "main",
+        { "name": "beta", "prerelease": true },
+        { "name": "alpha", "prerelease": true }
+    ],
     "plugins": [
         "@semantic-release/commit-analyzer", 
         "@semantic-release/release-notes-generator", 
@@ -9,7 +14,7 @@
         "@semantic-release/github",
         "@semantic-release/git",
         ["@semantic-release/exec", {
-            "publishCmd": "curl -sL https://git.io/goreleaser | bash -s release"
+            "publishCmd": "goreleaser release"
         }]
     ]
 }

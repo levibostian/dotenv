@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/fatih/color"
-	cliConfig "github.com/levibostian/dotenv/cliconfig"
+	"github.com/levibostian/dotenv/config"
 )
 
 func ShouldNotHappen(err error) {
@@ -27,7 +27,7 @@ func HandleError(err error) {
 // Debug - Allows you to put anything you want inside. String, struct, etc. We will print that to the console.
 // Help: https://gobyexample.com/string-formatting
 func Debug(format string, args ...interface{}) {
-	if cliConfig.CliConfig.Debug {
+	if config.CliConfig.Debug {
 		msg := fmt.Sprintf(format, args...)
 		color.Cyan("[DEBUG] " + msg)
 	}
@@ -35,7 +35,7 @@ func Debug(format string, args ...interface{}) {
 
 // Verbose - Allows you to put anything you want inside. String, struct, etc. We will print that to the console.
 func Verbose(format string, args ...interface{}) {
-	if cliConfig.CliConfig.Verbose || cliConfig.CliConfig.Debug {
+	if config.CliConfig.Verbose || config.CliConfig.Debug {
 		msg := fmt.Sprintf(format, args...)
 		color.White(msg)
 	}

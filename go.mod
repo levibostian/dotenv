@@ -10,5 +10,5 @@ require (
 	github.com/iancoleman/strcase v0.1.3
 	github.com/joho/godotenv v1.3.0
 	github.com/spf13/cobra v1.0.0
-	gotest.tools/gotestsum v1.6.3 // indirect
+	gotest.tools/gotestsum v1.6.4 // indirect
 )
