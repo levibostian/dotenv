@@ -2,6 +2,8 @@ project_name: dotenv
 before:
   hooks:
     - go mod download
+# Goreleaser by default sets main.version in ldflags: https://goreleaser.com/environment/#using-the-mainversion
+# you can set your own ldflags, however if needed. 
 builds:
   - env:
       - CGO_ENABLED=0

@@ -113,6 +113,10 @@ This is where the Go source code exists for the new language.
 # Deployment 
 
 * Make sure to set version number when compiling: `go build -ldflags "-X main.version=1.0.1"`
+* Set environment variables:
+1. `REPO_PUSH_TOKEN` - github personal access token with `repos` permission access. 
+2. `DOCKERHUB_USERNAME` - username for dockerhub to push docker images. 
+3. `DOCKERHUB_TOKEN` - docker hub token to authenticate with account. 
 
 ## Contributors
 

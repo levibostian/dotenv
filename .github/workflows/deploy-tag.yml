@@ -1,0 +1,41 @@
+name: Deploy next version git tag 
+on: 
+  push:    
+    branches: ['main', 'beta', 'alpha']
+
+jobs:
+  deploy-tag:
+    name: Get next version, create tag 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # We only need a git tag and github release from semantic release. Goreleaser will update existing github release and deploy from tags. 
+      - name: Make git tag with latest version via Semantic Release 
+        uses: cycjimmy/semantic-release-action@v2
+        id: semantic
+        with: 
+          # version numbers below can be in many forms: M, M.m, M.m.p
+          semantic_version: 17
+          extra_plugins: |
+            @semantic-release/commit-analyzer@8
+            @semantic-release/release-notes-generator@9
+            @semantic-release/changelog@5
+            @semantic-release/git@9
+            @semantic-release/github@7
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_PUSH_TOKEN }}
+      
+      # Docker login is required by goreleaser           
+      - uses: docker/login-action@v1
+        if: steps.semantic.outputs.new_release_published == 'true'
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}   
+          password: ${{ secrets.DOCKERHUB_TOKEN }}             
+      - name: Deploy binaries via GoReleaser 
+        if: steps.semantic.outputs.new_release_published == 'true'
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          version: latest
+          args: release --rm-dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_PUSH_TOKEN }} # give more permissions so goreleaser can commit on homebrew tap repo
