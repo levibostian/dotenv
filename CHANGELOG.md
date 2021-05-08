@@ -1,3 +1,10 @@
+# [1.0.0-beta.2](https://github.com/levibostian/dotenv/compare/1.0.0-beta.1...1.0.0-beta.2) (2021-05-08)
+
+
+### Features
+
+* allow multiple source langs ([#2](https://github.com/levibostian/dotenv/issues/2)) ([205b67c](https://github.com/levibostian/dotenv/commit/205b67c5c154cda29dca27f31cdc2b0536d4dc49))
+
 # 1.0.0-beta.1 (2021-05-08)
 
 
