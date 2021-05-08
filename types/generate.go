@@ -1,7 +1,7 @@
 package types
 
 type GenerateOptions struct {
-	InputLang      string
+	InputLangs     string // string: `java` or list string: `java, kotlin`
 	OutputLang     string
 	OutputPath     string
 	SourceCodePath string

@@ -18,7 +18,7 @@ func Execute(options types.GenerateOptions) {
 	ui.Debug(`Generating. Options: %+v`, options)
 
 	var err error
-	inputLang, err := lang.GetLang(options.InputLang)
+	inputLangs, err := lang.GetLangs(options.InputLangs)
 	ui.HandleError(err)
 	outputLang, err := lang.GetLang(options.OutputLang)
 
@@ -30,8 +30,14 @@ func Execute(options types.GenerateOptions) {
 			return nil
 		}
 
-		if !inputLang.IsFilenameValid(info.Name()) {
-			ui.Debug(`File not valid, skipping: %s`, path)
+		var inputLangForFile lang.Lang
+		for _, lang := range inputLangs {
+			if lang.IsFilenameValid(info.Name()) {
+				inputLangForFile = lang
+			}
+		}
+		if inputLangForFile == nil {
+			ui.Debug(`File not of any input language, skipping: %s`, path)
 			return nil
 		}
 
@@ -40,7 +46,7 @@ func Execute(options types.GenerateOptions) {
 		for _, line := range strings.Split(fileContents, "\n") {
 			ui.Debug("Line of file: %s", line)
 
-			for _, envFound := range inputLang.ParseSourceCodeLine(line) {
+			for _, envFound := range inputLangForFile.ParseSourceCodeLine(line) {
 				envValuesFound.Add(envFound)
 			}
 		}
