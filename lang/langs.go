@@ -3,6 +3,7 @@ package lang
 import (
 	"errors"
 	"fmt"
+	"strings"
 
 	"github.com/levibostian/dotenv/types"
 )
@@ -31,6 +32,24 @@ type Lang interface {
 	GetOutputFileName() string
 	// Generate a multi-line string that is the output source code with all of the environment variables inside. It's recommended you view the existing languages supported by this code base for examples as there are a lot of steps in this function.
 	GetOutputFile(values map[string]string, options types.GenerateOptions) string
+}
+
+// Like GetLang(), but can handle an input string in the form of a list. Example: `java, kotlin`
+func GetLangs(langString string) ([]Lang, error) {
+	selectedLangs := []Lang{}
+
+	for _, inputLangString := range strings.Split(langString, ",") {
+		inputLangString = strings.ReplaceAll(inputLangString, " ", "")
+
+		inputLang, err := GetLang(inputLangString)
+		if err != nil {
+			return nil, err
+		}
+
+		selectedLangs = append(selectedLangs, inputLang)
+	}
+
+	return selectedLangs, nil
 }
 
 // NL: Add a case statement for your language.
@@ -63,6 +82,6 @@ func GetLang(langString string) (Lang, error) {
 }
 
 // NL: Add your new language below to the list. If your new language struct is named "Typescript", for example, add `Typescript{}` to the end of this list below.
-func GetLangs() []Lang {
+func GetAvailableLangs() []Lang {
 	return []Lang{Java{}, Kotlin{}}
 }

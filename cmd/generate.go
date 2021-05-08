@@ -26,13 +26,13 @@ dotenv generate java [args]`,
 var packageName string
 var sourceCodePath string
 var outputFilePath string
-var inputLang string // if different from output lang
+var inputLang string // if different from output lang. can be a string list: `java, kotlin` or `java,kotlin`
 var dotenvFilePath string
 
 func init() {
 	var allLangCommands = []*cobra.Command{}
 	var langsRequiringPackageName = []*cobra.Command{}
-	for _, lang := range lang.GetLangs() {
+	for _, lang := range lang.GetAvailableLangs() {
 		langInfo := lang.GetInfo()
 		command := &cobra.Command{
 			Use:   langInfo.Name,
@@ -64,7 +64,7 @@ func init() {
 		langCommand.Flags().StringVarP(&sourceCodePath, "source", "s", "", "Path where the source code exists (required)")
 		langCommand.MarkFlagRequired("source")
 
-		langCommand.Flags().StringVarP(&inputLang, "inputLang", "l", "", fmt.Sprintf("Programming language used by project. Options: %s (optional. default: output lang)", availableInputLangsString))
+		langCommand.Flags().StringVarP(&inputLang, "inputLang", "l", "", fmt.Sprintf("Programming language(s) used by project. If multiple langs, can be list - java,kotlin. Options: %s (optional. default: output lang to generate to)", availableInputLangsString))
 
 		langCommand.Flags().StringVarP(&dotenvFilePath, "env", "e", "", ".env file path (example: src/) (optional. default: current dir)")
 
@@ -105,5 +105,5 @@ func generateForLang(outputLangName string) {
 	dotenvFilePath, err = util.SanitizeDirectory(dotenvFilePath)
 	ui.HandleError(err)
 
-	generate.Execute(types.GenerateOptions{OutputLang: outputLangName, InputLang: inputLang, OutputPath: outputFilePath, SourceCodePath: sourceCodePath, PackageName: packageName, DotenvPath: dotenvFilePath})
+	generate.Execute(types.GenerateOptions{OutputLang: outputLangName, InputLangs: inputLang, OutputPath: outputFilePath, SourceCodePath: sourceCodePath, PackageName: packageName, DotenvPath: dotenvFilePath})
 }
