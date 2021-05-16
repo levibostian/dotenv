@@ -1,15 +1,20 @@
-name: Deploy next version git tag 
+name: Deploy next version 
 on: 
   push:    
     branches: ['main', 'beta', 'alpha']
 
+# The deployment process:
+# 1. Determine if we need to make a new deployment. If commits were only changing things like docs, for example, no deployment is necessary. 
+# 2. Make a git tag and GitHub release with changelog and next semantic version. Semantic-release tool does all of this for us! 
+# 3. Built pre-built binaries of our Go project and upload them to the latest GitHub release that was created. Goreleaser tool does this for us!
+
 jobs:
-  deploy-tag:
-    name: Get next version, create tag 
+  deploy:
+    name: Create tag, deploy binaries
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # We only need a git tag and github release from semantic release. Goreleaser will update existing github release and deploy from tags. 
+      # We only need to create a git tag and github release from semantic release. Goreleaser will update existing github release and add binaries to the release. 
       - name: Make git tag with latest version via Semantic Release 
         uses: cycjimmy/semantic-release-action@v2
         id: semantic
@@ -25,6 +30,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.REPO_PUSH_TOKEN }}
       
+      # Now that a git tag is made, let's build and deploy binaries (but only if semantic-release actually made a new release). 
       # Docker login is required by goreleaser           
       - uses: docker/login-action@v1
         if: steps.semantic.outputs.new_release_published == 'true'
