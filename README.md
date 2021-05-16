@@ -1,6 +1,6 @@
 # dotenv 
 
-The easiest way to use `.env` values in your next project. A flexible CLI that reads your source code project and generates a new file with your `.env` values inside that you want. 
+The easiest way to use `.env` values in your next project. A flexible CLI that reads your source code project and generates a new file with your `.env` values inside. 
 
 ## How does it work? 
 
@@ -45,32 +45,43 @@ object Env {
 
 ## Getting started
 
-This CLI is not meant to be used directly by your project (although you surely can do that). It's meant to be a CLI that does all the hard work while you are supposed to then create a wrapper around the CLI that's specific to your language of choice. That means that I recommend that instead of using this project directly you instead use one of the following:
+This CLI is not meant to be used directly in your project (although you surely can do that). It's meant to be a CLI that does all the hard work while you are supposed to then create a wrapper around the CLI that's specific to your language of choice. That means that I recommend that instead of using the `dotenv` CLI directly in your project, instead use one of the following:
 
 * [dotenv-android](https://github.com/levibostian/dotenv-android)
 * [dotenv-ios](https://github.com/levibostian/dotenv-ios)
 
-That is it for now but there may be more in the future! 
+...these are all the wrappers for now, but there may be more in the future! See [goals of this project](#goals-of-this-project) to understand how more languages and build system wrappers may be supported in the future.
 
-...If you are still wondering how to get started with this project then here you go:
+If you are still wondering how to get started using the `dotenv` CLI then here you go:
 
-1. Install the CLI. (currently you must build from source but pre-built binaries are to come)
+1. [Install the CLI](#install)
+2. Run command `dotenv generate` to see the help docs printed to you on how to use the CLI. 
 
-2. Use the CLI on your project. Use command `dotenv generate` to see the help docs printed to you on how to use the CLI. 
+# Install 
+
+There are many ways to download the CLI. 
+
+1. (recommended) [Homebrew](https://brew.sh/) --> `brew install levibostian/tap/dotenv`
+2. Download the binary directly from [GitHub releases](https://github.com/levibostian/dotenv/releases). Download the file on your computer anywhere you wish. Make sure to add the binary to your PATH. 
+
+You now have the CLI installed on your machine. If you run `dotenv version` or `dotenv --help` and see information printed out instead of an error message, dotenv is successfully installed. 
 
 ## Goals of this project
 
-* **Be flexible and powerful.** This CLI is not meant to be convenient. Instead, this CLI is meant to do the heavy work for you and then we build language specific tools to be convenient. Like [dotenv-android](https://github.com/levibostian/dotenv-android) to make using `.env` files in your Android app very quick and easy. 
-* **Binary form not relying on a specific programming language to execute.** We didn't want this project to be written in lets say Ruby to force the developer using it to have Ruby installed on their machine. Instead, have pre-built binaries created so developers could simply install the tool and run it. Some developer eco-systems like iOS/Swift are used to tools being written in Ruby so that wouldn't be a pain but for Typescript/node or Android eco-systems Ruby is not common. Binary is universal. 
+* **Be flexible and powerful.** This CLI is not meant to be convenient as a CLI. Instead, this CLI is meant to do the heavy work for you and then we build language specific tools to be convenient. Like [dotenv-android](https://github.com/levibostian/dotenv-android) to make using `.env` files in your *Android app* very quick and easy. 
+* **Binary form not relying on a specific programming language to execute.** We didn't want this project to be written in lets say Ruby to force the developer using it to have Ruby installed on their machine. Instead, have pre-built binaries created so developers could simply install the CLI and run it. Some developer eco-systems like iOS/Swift are used to tools being written in Ruby so that wouldn't be a pain but for Typescript/node or Android eco-systems Ruby is not common. Binary is universal. 
 * **Generate a source code file in X language where the input language can be X or Y.** Rather then assume that your project is written in Java and you want to generate Java code, why not give you the flexibility in outputting Kotlin from your Java source code? 
+* **Not support every programming language** This CLI is currently built and maintained by [myself](https://github.com/levibostian/) so I can use this tool in my projects. This means that this CLI only supports languages that I personally know so I can keep the tool maintained. This project's vision is not to support every programming language built-in with the CLI. Instead, I would recommend we refactor this CLI to be abstract enough to allow different programming languages via plugins or config files. This would keep the CLI code-base simple while also allowing others to support whatever language they need without having to become a core contributor of this code base. 
 
 # Development 
 
 * Compile code: 
 
 ```
-go build
+go build -ldflags "-X main.version=1.0.1"
 ```
+
+*Note: the `1.0.1` does not matter during development. You only want to run this command to allow tests to pass that check the version gets printed correctly.*
 
 * Run tests: 
 
@@ -82,17 +93,16 @@ gotestsum --format pkgname
 
 ### Add a new language 
 
-At this time, I am not looking for this tool to get bloated with dozens of languages. The more we add, the more we have to maintain! If this repo becomes popular then I advice that we create a plugin system or something like it so people can create go modules that can plugin to the CLI to support X language. 
+At this time, this CLI tool supports the following programming languages:
 
-With that being said, this main repo is open to adding new languages:
-* Javascript
-* Typescript
+* Java
+* Kotlin
+
+With the plan to add:
+
 * Swift
-* Go
 
-Why these languages? 
-1. I ([levibostian](https://github.com/levibostian/)) the current maintainer knows these languages and can therefore maintain the code. 
-2. I have been toying around with the idea of adding these languages to the project at some point anyway so I can use this tool for those projects. 
+At this time, I am not looking for this tool to get bloated with dozens of languages. See [goals of this project](#goals-of-this-project) to understand how more languages and build system wrappers may be supported in the future.
 
 **How do we add a new language?**
 
