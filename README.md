@@ -35,7 +35,7 @@ class Example {
 }
 ```
 
-Your compiler will complain at this time because you don't have a file `Env` with the variable `stripeApiKey`. But you need to define these variables to request from the `dotenv` CLI that you want to use an environment variable value. Now if you run the `dotenv` CLI, it will see `Env.stripeApiKey`, look for a environment variable `PROJECT_NAME` in the `.env` file, and generate:
+Your compiler will complain at this time because you don't have a file `Env` with the variable `stripeApiKey`. But you need to define these variables to request from the `dotenv` CLI that you want to use an environment variable value. Now if you run the `dotenv` CLI, it will see `Env.stripeApiKey`, look for a environment variable `STRIPE_API_KEY` in the `.env` file, and generate:
 
 ```kotlin
 object Env {
