@@ -1,0 +1,25 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "slhck",
+      "name": "Werner Robitza",
+      "avatar_url": "https://avatars.githubusercontent.com/u/582444?v=4",
+      "profile": "http://slhck.info",
+      "contributions": [
+        "ideas",
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "dotenv",
+  "projectOwner": "levibostian",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
