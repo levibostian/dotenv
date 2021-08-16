@@ -1,4 +1,7 @@
 # dotenv 
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The easiest way to use `.env` values in your next project. A flexible CLI that reads your source code project and generates a new file with your `.env` values inside. 
 
@@ -131,6 +134,19 @@ This is where the Go source code exists for the new language.
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key))
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="http://slhck.info"><img src="https://avatars.githubusercontent.com/u/582444?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Werner Robitza</b></sub></a><br /><a href="#ideas-slhck" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/levibostian/dotenv/commits?author=slhck" title="Documentation">📖</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
