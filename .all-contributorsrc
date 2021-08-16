@@ -14,6 +14,18 @@
         "ideas",
         "doc"
       ]
+    },
+    {
+      "login": "levibostian",
+      "name": "Levi Bostian",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2041082?v=4",
+      "profile": "https://levi.earth",
+      "contributions": [
+        "code",
+        "doc",
+        "ideas",
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7,
