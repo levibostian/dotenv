@@ -12,7 +12,9 @@
       "profile": "http://slhck.info",
       "contributions": [
         "ideas",
-        "doc"
+        "doc",
+        "code",
+        "test"
       ]
     },
     {
