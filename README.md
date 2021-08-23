@@ -139,7 +139,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="http://slhck.info"><img src="https://avatars.githubusercontent.com/u/582444?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Werner Robitza</b></sub></a><br /><a href="#ideas-slhck" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/levibostian/dotenv/commits?author=slhck" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://slhck.info"><img src="https://avatars.githubusercontent.com/u/582444?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Werner Robitza</b></sub></a><br /><a href="#ideas-slhck" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/levibostian/dotenv/commits?author=slhck" title="Documentation">📖</a> <a href="https://github.com/levibostian/dotenv/commits?author=slhck" title="Code">💻</a> <a href="https://github.com/levibostian/dotenv/commits?author=slhck" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://levi.earth"><img src="https://avatars.githubusercontent.com/u/2041082?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Levi Bostian</b></sub></a><br /><a href="https://github.com/levibostian/dotenv/commits?author=levibostian" title="Code">💻</a> <a href="https://github.com/levibostian/dotenv/commits?author=levibostian" title="Documentation">📖</a> <a href="#ideas-levibostian" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-levibostian" title="Maintenance">🚧</a></td>
   </tr>
 </table>
