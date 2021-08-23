@@ -5,5 +5,6 @@ package earth.levi.dotenv;
  */
 public final class Env {
     public static String barBar = "hello";
+    public static String bazBaz = "";
     public static String fooFoo = "world";
 }
