@@ -65,9 +65,7 @@ func Execute(options types.GenerateOptions) {
 
 		value := os.Getenv(strings.ToUpper(envSourceCodeValue))
 
-		if value != "" {
-			envValues[envSourceCodeValue] = value
-		}
+		envValues[envSourceCodeValue] = value
 
 		return false
 	})
